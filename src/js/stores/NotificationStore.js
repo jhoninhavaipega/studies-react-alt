@@ -1,17 +1,28 @@
-import alt from '../alt'
+import alt from '../alt.js';
+import NotificationActions from '../actions/NotificationActions.js';
 
 class NotificationStore {
   constructor() {
-    this.notifications = [];
-
     this.bindListeners({
-      handleUpdateNotifications: NotificationActions.UPDATE_NOTIFICATION
+      handleUpdateNotifications: NotificationActions.UPDATE_NOTIFICATIONS,
+      handleFailedNotifications: NotificationActions.FAILED_NOTIFICATIONS,
+      handleFetchNotifications: NotificationActions.UPDATE_NOTIFICATIONS
     });
+
+    this.notifications = [];
+    this.errorMessage = null;
   }
 
   handleUpdateNotifications(notifications) {
     this.notifications = notifications;
+    this.errorMessage = null;
   }
+
+  handleFailedNotifications(errorMessage) {
+    this.errorMessage = errorMessage;
+  }
+
+  handleFetchNotifications() {}
 }
 
-export alt.createStore(NotificationStore, 'NotificationStore');
+export default alt.createStore(NotificationStore, 'NotificationStore');

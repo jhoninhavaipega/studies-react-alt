@@ -1,3 +1,5 @@
+import '../sass/app.scss';
+
 import React from 'react';
 import { render } from 'react-dom';
 import { ListNotifications } from './components/listNotifications/app.js';
